@@ -1,0 +1,19 @@
+div[class="flex justify-between py-3 px-2 border-b border-gray-300 lg:w-80 lg:border-b-0 lg:flex-col lg:h-screen lg:py-8 lg:px-6 lg:border-r"]
+    div
+        h1[class="font-insta text-3xl mb-12"]
+            | Instagram
+        div[clas="flex flex-col"]
+            = link_to  user_session_path, class:"hidden lg:flex flex-row mb-10"
+                = image_tag  "home/home.png", class:"h-6"
+                p[class="ml-5"]
+                    | Inicio
+            = link_to  user_session_path, class:"hidden lg:flex flex-row mb-10"
+                = image_tag  "home/search.png", class:"h-6"
+                p[class="ml-5"]
+                    | Buscar
+            = link_to  user_session_path, class:"hidden lg:flex flex-row mb-10"
+                = image_tag  "home/user.png", class:"h-6"
+                p[class="ml-5"]
+                    | Perfil
+
+    = button_to "cerrar sesión", destroy_user_session_path, method: :delete, class:"hover:bg-gray-200 rounded-lg p-2 text-sm font-semibold"
