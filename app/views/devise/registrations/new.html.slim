@@ -1,0 +1,21 @@
+div[class="w-80 mx-auto border border-gray-300 px-10 py-12 mt-5"]
+  h1[class="text-5xl font-insta text-center mb-6"] Instagram
+  p[class="font-semibold text-gray-500 text-center mb-6"] Regístrate para ver fotos y vídeos de tus amigos.
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    div[class="field mb-2"]
+      = f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Correo electrónico", class:"text-xs border border-gray-300 w-full focus:ring-0 focus:border-gray-400 block"
+    div[class="field mb-2"]
+      = f.password_field :password, autocomplete: "new-password", placeholder:"Contraseña", class:"text-xs border border-gray-300 w-full focus:ring-0 focus:border-gray-400 block"
+    div[class="field mb-2"]
+      = f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Confirmar contraseña", class:"text-xs border border-gray-300 w-full focus:ring-0 focus:border-gray-400 block"
+    .actions
+      = f.submit "Registrarse", class:"rounded-lg font-semibold text-white w-full bg-blue-400 hover:bg-blue-500 transition-colors duration-500 p-2 text-sm cursor-pointer mt-3 mb-3"
+    
+    div[class="opciones py-3 flex items-center justify-between"] 
+      hr[class="w-2/5 border border-t"]
+      small[class="text-center text-gray-400"] O
+      hr[class="w-2/5 border border-t"]
+  
+  div[class="flex justify-center mt-2"]
+    = render "devise/shared/links"

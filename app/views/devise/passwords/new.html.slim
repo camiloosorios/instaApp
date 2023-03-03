@@ -1,0 +1,29 @@
+div[class="border-b border-gray-300 py-3"]
+  div[class="w-2/4 mx-auto"]
+    h1[class="text-3xl font-insta"] Instagram
+
+div[class="w-96 mx-auto text-center border border-gray-300 px-10 py-5 mt-20"]
+  = image_tag  "login/lock.png", class:"w-20 rounded-full border-2 border-black p-2 mx-auto mb-2"
+
+  h2[class="font-semibold mb-2"] ¿Tienes problemas para entrar?
+
+  p[class="text-gray-500 text-sm mb-3"] Introduce tu correo electrónico y te enviaremos un enlace para que vuelvas a entrar en tu cuenta.
+
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    = render "devise/shared/error_messages", resource: resource
+
+    div[class="field"]
+      = f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Correo electrónico", class:"text-xs border border-gray-300 w-full focus:ring-0 focus:border-gray-400 block rounded"
+
+    div[class="actions"]
+      = f.submit "Enviar enlace de acceso", class:"text-sm bg-blue-400 text-white p-2 rounded-lg w-full mt-4 hover:bg-blue-500 transition-colors duration-500 cursor-pointer"
+
+  div[class="opciones py-3 flex items-center justify-between"] 
+      hr[class="w-2/5 border border-t"]
+      small[class="text-center text-gray-400"] O
+      hr[class="w-2/5 border border-t"]
+
+  = link_to  "Crear cuenta nueva", new_registration_path(resource_name), class:"text-sm font-semibold mb-6 hover:text-gray-400"
+
+div[class="w-96 mx-auto border border-gray-300 border-t-0 py-2 flex justify-center"]
+  = link_to  "Volver al inicio de sesión", new_session_path(resource_name), class:"text-sm font-semibold text-center hover:text-gray-400"
