@@ -16,7 +16,12 @@
 
   <body>
     <main>
-      <%= yield %>
+        <div class="flex flex-col lg:flex-row">
+          <% if user_signed_in? %>
+            <%= render "shared/navegation"%> 
+          <% end %>
+          <%= yield %>
+        </div>
     </main>
   </body>
 </html>
