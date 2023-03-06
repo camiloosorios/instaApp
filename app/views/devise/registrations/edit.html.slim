@@ -1,0 +1,53 @@
+div[class="lg:w-1/3 mx-auto"] 
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    - @user.errors.full_messages.each do |message|
+      p[class="p-2 bg-red-200 text-red-900 font-bold border-l-4 border-l-red-900 rounded-lg mt-2"]
+        = message
+
+    h2[class="text-3xl text-center font-semibold py-5"]
+      | Editar Perfil 
+
+    div[class="field mb-3 px-2"]
+      = f.label :email, "Correo electrónico", class:"font-semibold ml-2"
+      = f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Correo electrónico", class:"rounded-lg border-gray-300 w-full"
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      div
+        | Currently waiting confirmation for: 
+        = resource.unconfirmed_email
+
+    div[class="field mb-3 px-2"]
+      = f.label :name, "Nombre", class:"font-semibold ml-2"
+      = f.text_field :name, autofocus: true, autocomplete: "name", placeholder:"Nombre de usuario", class:"rounded-lg border-gray-300 w-full"
+
+    div[class="field mb-3 px-2"]
+      = f.label :username, "Nombre de usuario", class:"font-semibold ml-2"
+      = f.text_field :username, autofocus: true, autocomplete: "username", placeholder:"Nombre de usuario", class:"rounded-lg border-gray-300 w-full"
+
+    div[class="field mb-3 px-2"]
+      = f.label :photo, "Foto de perfil", class:"font-semibold ml-2 block"
+      = f.file_field :photo, autofocus: true, placeholder:"Nombre de usuario", direct_upload: true
+        
+    div[class="field mb-2 px-2"]
+      = f.label :password, "Nueva contraseña", class:"font-semibold ml-2"
+      = f.password_field :password, autocomplete: "new-password", placeholder:"Nueva contraseña", class:"rounded-lg border-gray-300 w-full text-sm"
+      i[class="ml-3 text-gray-500 text-sm"]
+        | *Dejar en blanco si no quieres actualizarla
+
+    div[class="field mb-3 px-2"]
+      = f.label :password_confirmation, "Confirmar Contraseña", class:"font-semibold ml-2"
+      = f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Confirmar contraseña",class:"rounded-lg border-gray-300 w-full text-sm"
+      i[class="ml-3 text-gray-500 text-sm"]
+        | *Dejar en blanco si no quieres actualizarla
+
+    div[class="field px-2"]
+      = f.label :current_password, "Contraseña", class:"font-semibold ml-2"
+      = f.password_field :current_password, autocomplete: "current-password", placeholder:"Actual contraseña", class:"rounded-lg border-gray-300 w-full text-sm"
+      i[class="text-sm text-gray-500 ml-3"]
+        | *Escribir contraseña actual para guardar cambios
+
+    div[class="actions flex flex-row-reverse px-2"]
+      = f.submit "Actualizar", class:"bg-blue-400 hover:bg-blue-500 text-white font-semibold p-2 text-sm cursor-pointer rounded-lg transition-colors duration-500 w-full lg:w-fit my-3 items-right"
+  
+  div[class="flex justify-between px-2"]
+    = button_to "Borrar cuenta", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class:"p-2 rounded-lg hover:bg-red-500 hover:text-white transition-colors duration-300"
+    = link_to "Volver", :back, class:"p-2 rounded-lg hover:bg-gray-300 transition-colors duration-300"
