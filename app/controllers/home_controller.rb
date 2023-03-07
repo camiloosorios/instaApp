@@ -6,4 +6,8 @@ class HomeController < ApplicationController
 
   def profile
   end
+
+  def new
+    @post = Post.new
+  end
 end
