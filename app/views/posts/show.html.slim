@@ -1,2 +1,20 @@
-p 
-    = current_user.id
+div[class="mt-10 w-full lg:w-1/3 mx-auto md:border border-gray-300 h-fit"]
+    div[class="flex py-2 lg:px-2"]
+        = image_tag  @user.photo, class:"rounded-full h-8 w-8"
+        =link_to profile_path, class:"font-semibold ml-2"
+            = @user.username
+    = image_tag  @post.photo, class:"h-96 w-full md:h-1/2 md:w-auto"
+
+    div[class="flex ml-2 lg:ml-5 py-2 items-center"]
+        = image_tag  "post/like.svg", class:"h-8 rounded-lg"
+
+        p[class="font-semibold ml-1 text-sm"]
+            | 0
+            span[class="font-normal ml-1"] Likes
+
+    div[class="mx-2 lg:mx-5"]
+        = form_with model: @comment, url: comments_path do |f|
+            = f.text_area :comment, placeholder: "Agregar comentario...", class:"rounded-lg border-gray-300 w-full mb-2"
+            = f.text_field :post_id, class:"hidden", value: params[:id]
+            div[class="flex justify-end"]
+                = f.submit :enviar, class:"rounded-lg text-white bg-blue-400 hover:bg-blue-500 uppercase p-2 cursor-pointer w-full lg:w-fit mb-2"

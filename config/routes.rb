@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get '/profile', to: 'home#profile'
   # Post Controller
   resources :posts, only: [:new, :create, :show]
+  # Comments Controller
+  resources :comments, only: [:create, :destroy]
 end

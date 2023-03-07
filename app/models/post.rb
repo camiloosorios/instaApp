@@ -2,7 +2,7 @@ class Post < ApplicationRecord
 
     has_one_attached :photo;
 
-    # belongs_to :user
+    has_many :comment
 
     validates :description, presence: true
 
