@@ -1,9 +1,9 @@
 div[class="md:w-1/3 mx-auto"]
     h1[class="text-4xl font-semibold text-center pt-10 pb-2"] Crear Publicación
     hr[class="pb-8"]
-
-    = form_with model: @post, url: post_create_path do |f|
+    = form_with model: @post, url: posts_path do |f|
         div[class="mb-5 flex flex-col items-center", data-controller="photo"]
+            em[class="text-sm text-center text-gray-400"] *Se recomienda que las imagenes sean cuadradas
             = image_tag "post/post.png", class:"w-60 mb-5", id:"imgPreview", data:{ photo_target:"img" }
             = f.file_field :photo, data: {action:"change->photo#preview", photo_target:"file"}
         
@@ -12,5 +12,3 @@ div[class="md:w-1/3 mx-auto"]
             = f.text_area :description, placeholder:"Descripción de la publicación", class: "w-full border-gray-300 rounded-lg text-sm"
 
         = f.submit :publicar, class:"uppercase w-full p-2 font-semibold text-white bg-blue-400 hover:bg-blue-500 transition-colors duration-500 rounded-lg cursor-pointer"
-
-

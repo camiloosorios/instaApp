@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  get 'post/create'
+  # Devise
   devise_for :users
-
+  # Home Controller
   get '/', to: 'home#index'
   get '/profile', to: 'home#profile'
-  get '/new', to: 'home#new'
-  
-  
+  # Post Controller
+  resources :posts, only: [:new, :create, :show]
 end
